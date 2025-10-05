@@ -16,9 +16,9 @@ CATEGORY_MAP = {
     33: "enemy", 36: "enemy", 37: "enemy",
     42: "enemy", 44: "enemy",
 
-    1: "player", 8: "player", 16: "player",
-    20: "player", 24: "player", 28: "player",
-    35: "player", 39: "player",
+    1: "friendly", 8: "friendly", 16: "friendly",
+    20: "friendly", 24: "friendly", 28: "friendly",
+    35: "friendly", 39: "friendly",
 
     0: "friendly", 6: "friendly", 7: "friendly",
     11: "friendly", 13: "friendly", 15: "friendly",
@@ -265,7 +265,7 @@ def main():
             x1i, y1i, x2i, y2i = int(x1), int(y1), int(x2), int(y2)
             display_title = CATEGORY_MAP.get(tr.cls_id, "other")
             # Base color by category
-            if display_title == "friendly" or display_title == "player":
+            if display_title == "friendly":
                 color = (0, 255, 0)  # green
             elif display_title == "enemy":
                 color = (0, 0, 255)  # red
@@ -279,23 +279,24 @@ def main():
             
             cv2.rectangle(annotated, (x1i, y1i), (x2i, y2i), color, 2)
             suffix = " (isolated)" if isolated else ""
-            label_text = f"#{tr.track_id} {display_title}{suffix} {tr.conf:.2f}"
+            # label_text = f"#{tr.track_id} {display_title}{suffix} {tr.conf:.2f}"
+            label_text = ""
             cv2.putText(annotated, label_text, (x1i, max(y1i-6, 0)),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2, cv2.LINE_AA)
 
         # Optional: print current active tracks (one line per track)
-        for tr in tracks:
-            disp = CATEGORY_MAP.get(tr.cls_id, "other")
-            print(f"track {tr.track_id}: {disp} ({tr.label}) conf={tr.conf:.2f} bbox=[{tr.bbox[0]:.1f},{tr.bbox[1]:.1f},{tr.bbox[2]:.1f},{tr.bbox[3]:.1f}]")
+        # for tr in tracks:
+        #     disp = CATEGORY_MAP.get(tr.cls_id, "other")
+        #     print(f"track {tr.track_id}: {disp} ({tr.label}) conf={tr.conf:.2f} bbox=[{tr.bbox[0]:.1f},{tr.bbox[1]:.1f},{tr.bbox[2]:.1f},{tr.bbox[3]:.1f}]")
 
         # FPS overlay
-        f += 1
-        if f % 10 == 0:
-            now = time.time()
-            fps = 10.0 / (now - last)
-            last = now
-            cv2.putText(annotated, f"{fps:.1f} FPS ({device})", (10, 30),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2, cv2.LINE_AA)
+        # f += 1
+        # if f % 10 == 0:
+        #     now = time.time()
+        #     fps = 10.0 / (now - last)
+        #     last = now
+        #     cv2.putText(annotated, f"{fps:.1f} FPS ({device})", (10, 30),
+        #                 cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2, cv2.LINE_AA)
 
         cv2.imshow(WIN_NAME, annotated)
         key = cv2.waitKey(1) & 0xFF
