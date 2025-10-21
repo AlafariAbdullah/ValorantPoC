@@ -1,2 +1,3 @@
 # VALORANTPOC/.gitignore
 /Media
+.DS_Store
