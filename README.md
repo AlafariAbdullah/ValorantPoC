@@ -65,7 +65,6 @@ Trained on the [Roboflow Valorant Map Analyzer](https://universe.roboflow.com/va
 | **Language** | Python |
 | **Frameworks** | Ultralytics YOLOv8, OpenCV, PyTorch, MSS |
 | **Script** | `minimalcam.py` (≈300 lines) |
-| **Model Type** | Custom fine-tuned object detection |
 | **Hardware** | MacBook Air M1, MPS backend |
 | **Performance** | ~15–20 FPS at 640×640 |
 
