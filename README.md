@@ -8,7 +8,7 @@ This project uses **YOLOv8** to detect and track players, enemies, and game obje
 
 Built and demoed on a **MacBook Air (M1)** using PyTorch's MPS backend at ~15–20 FPS. Developed for the **Twisted Minds Esports Hackathon 2025** in Riyadh.
 
-> Read the full writeup: [Blog Post]([https://YOUR_BLOG_URL_HERE](https://alafariabdullah.sa/detecting-player-isolation-in-valorant-using-yolov8/))
+> Read the full writeup: [Blog Post](https://alafariabdullah.sa/detecting-player-isolation-in-valorant-using-yolov8/)
 ## Files
 
 - **`minimalcam.py`** — Main script (~300 lines). Captures the minimap in real time, runs YOLOv8 inference, tracks players with a custom IOU tracker, and highlights isolated teammates.
